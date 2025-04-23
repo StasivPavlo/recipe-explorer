@@ -12,7 +12,7 @@ export default async function Home({ searchParams }: PageProps) {
   const recipes = response.success ? response.data : [];
 
   return (
-    <main className="container mx-auto px-4 py-8">
+    <div>
       <h1 className="text-4xl font-bold text-white mb-8">Recipe Explorer</h1>
       <div className="bg-gray-800 rounded-lg shadow-md p-6 mb-8">
         <RecipeSearch />
@@ -31,6 +31,6 @@ export default async function Home({ searchParams }: PageProps) {
           ))}
         </div>
       )}
-    </main>
+    </div>
   );
 }

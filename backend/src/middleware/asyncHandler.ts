@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { ApiError } from './errorHandler';
+import ControllerFunction from "../types/controller";
 
-export const asyncHandler = (fn: Function) => {
+export const asyncHandler = (fn: ControllerFunction ) => {
   return (req: Request, res: Response, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);
   };
-}; 
+};

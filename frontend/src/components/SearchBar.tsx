@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SearchBarItem from "@/components/SearchBarItem";
 
 type SearchParam = 'ingredient' | 'country' | 'category';
 
@@ -19,10 +20,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
 
   return (
     <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-4">
-      <div className="flex-1">
-        <label htmlFor="searchParam" className="block text-sm font-medium text-gray-300 mb-1">
-          Search by
-        </label>
+      <SearchBarItem label="Search by">
         <select
           id="searchParam"
           value={searchParam}
@@ -33,12 +31,9 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
           <option value="country">Country</option>
           <option value="category">Category</option>
         </select>
-      </div>
-      
-      <div className="flex-1">
-        <label htmlFor="searchValue" className="block text-sm font-medium text-gray-300 mb-1">
-          Search term
-        </label>
+      </SearchBarItem>
+
+      <SearchBarItem label="Search term">
         <input
           type="text"
           id="searchValue"
@@ -47,8 +42,8 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
           placeholder={`Enter ${searchParam}...`}
           className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         />
-      </div>
-      
+      </SearchBarItem>
+
       <div className="flex items-end">
         <button
           type="submit"
@@ -59,4 +54,4 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
       </div>
     </form>
   );
-} 
+}

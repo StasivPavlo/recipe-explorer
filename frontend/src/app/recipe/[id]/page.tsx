@@ -11,7 +11,7 @@ interface RecipePageProps {
 export default async function RecipePage({ params }: RecipePageProps) {
   const resolvedParams = await Promise.resolve(params);
   const response = await getRecipeById(resolvedParams.id);
-  
+
   if (!response.success || !response.data) {
     return (
       <div className="container mx-auto px-4 py-8">
@@ -21,9 +21,9 @@ export default async function RecipePage({ params }: RecipePageProps) {
       </div>
     );
   }
-  
+
   const recipe = response.data;
-  
+
   const ingredients = Object.entries(recipe)
     .filter(([key, value]) => key.startsWith('strIngredient') && value)
     .map(([key, value]) => {
@@ -33,8 +33,7 @@ export default async function RecipePage({ params }: RecipePageProps) {
     });
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           <div className="relative h-96 w-full mb-6">
             <Image
@@ -99,6 +98,5 @@ export default async function RecipePage({ params }: RecipePageProps) {
           </div>
         </div>
       </div>
-    </div>
   );
-} 
+}
