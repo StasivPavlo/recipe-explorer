@@ -1,9 +1,10 @@
 import { getRecipes } from '@/lib/server';
-import RecipeCard from '@/components/RecipeCard';
 import RecipeSearch from '@/components/RecipeSearch';
+import RecipesList from "@/components/RecipesList";
+import { SearchParamsInterface } from "@/types/searchParams";
 
 interface PageProps {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: SearchParamsInterface;
 }
 
 export default async function Home({ searchParams }: PageProps) {
@@ -18,19 +19,13 @@ export default async function Home({ searchParams }: PageProps) {
         <RecipeSearch />
       </div>
 
-      {!response.success ? (
+      { response.success ? (
+        <RecipesList recipes={recipes} />
+      ) : (
         <div className="bg-red-50 text-red-700 p-4 rounded-lg font-medium">
           {response.error || 'Failed to fetch recipes'}
         </div>
-      ) : recipes.length === 0 ? (
-        <div className="text-center text-gray-100 py-8 text-lg">No recipes found</div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {recipes.map((recipe) => (
-            <RecipeCard key={recipe.idMeal} recipe={recipe} />
-          ))}
-        </div>
-      )}
+      ) }
     </div>
   );
 }

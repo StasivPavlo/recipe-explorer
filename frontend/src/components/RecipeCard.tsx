@@ -15,6 +15,7 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
             src={recipe.strMealThumb}
             alt={recipe.strMeal}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 55vw, 20vw"
             className="object-cover"
           />
         </div>
@@ -26,4 +27,4 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
       </div>
     </Link>
   );
-} 
+}

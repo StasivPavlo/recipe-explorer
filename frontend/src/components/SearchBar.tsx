@@ -1,14 +1,13 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import SearchBarItem from "@/components/SearchBarItem";
-
-type SearchParam = 'ingredient' | 'country' | 'category';
+import { SearchParamsEnum } from "@/types/searchParams";
 
 interface SearchBarProps {
-  onSearch: (param: SearchParam, value: string) => void;
+  onSearch: (param: SearchParamsEnum, value: string) => void;
 }
 
 export default function SearchBar({ onSearch }: SearchBarProps) {
-  const [searchParam, setSearchParam] = useState<SearchParam>('ingredient');
+  const [searchParam, setSearchParam] = useState<SearchParamsEnum>(SearchParamsEnum.ingredient);
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearch = (e: React.FormEvent) => {
@@ -24,7 +23,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
         <select
           id="searchParam"
           value={searchParam}
-          onChange={(e) => setSearchParam(e.target.value as SearchParam)}
+          onChange={(e) => setSearchParam(e.target.value as SearchParamsEnum)}
           className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         >
           <option value="ingredient">Ingredient</option>

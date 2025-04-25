@@ -10,6 +10,11 @@ export interface Recipe {
   [key: string]: string | null; // For dynamic ingredient and measure properties
 }
 
+export interface Ingredient {
+  ingredient: string | null
+  measure: string | null
+}
+
 export interface ApiResponse<T> {
   success: boolean;
   data: T;
