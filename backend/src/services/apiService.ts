@@ -1,12 +1,14 @@
+import config from "../configs/index";
+
 import axios from "axios";
 import { RecipeListResponse, RecipeResponse } from "../types/recipe";
-import { ApiError } from "../middleware/errorHandler";
+import ApiError from "../exception/ApiError";
 
-if (!process.env.THEMEALDB_API_URL) {
-  throw new ApiError(500, 'THEMEALDB_API_URL environment variable is not set');
+const API_URL = config.api.mealDB;
+
+if (!API_URL) {
+  throw ApiError.apiError('THEMEALDB_API_URL environment variable is not set');
 }
-
-const API_URL = process.env.THEMEALDB_API_URL;
 
 export const getAll = async () => {
   const response = await axios.get<RecipeResponse>(`${API_URL}/search.php?s=`);

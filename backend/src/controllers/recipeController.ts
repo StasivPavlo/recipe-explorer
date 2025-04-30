@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ApiError } from '../middleware/errorHandler';
+import ApiError from '../exception/ApiError';
 import * as recipeService from '../services/recipeService';
 
 const isValidStringParam = (param: any): param is string =>
@@ -31,7 +31,7 @@ export const getRecipeById = async (req: Request, res: Response) => {
   const recipe = await recipeService.getRecipeById(id);
 
   if (!recipe) {
-    throw new ApiError(404, 'Recipe not found');
+    throw ApiError.notFound()
   }
 
   res.json({ success: true, data: recipe });
